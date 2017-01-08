@@ -1,0 +1,20 @@
+{
+	"views/index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"views/list.html",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"views/list.html"
+		]
+	},
+	"views/list.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	}
+}
