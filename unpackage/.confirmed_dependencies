@@ -4,10 +4,12 @@
 			"js/mui.min.js",
 			"css/mui.min.css",
 			"views/list.html",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"js/jquery-1.11.2.min.js"
 		],
 		"refer": [
-			"views/list.html"
+			"views/list.html",
+			"views/menu.html"
 		]
 	},
 	"views/list.html": {
