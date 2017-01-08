@@ -6,6 +6,7 @@
     <title></title>
     <script src="../js/mui.min.js"></script>
     <link href="../css/mui.min.css" rel="stylesheet"/>
+    <script src="../js/jquery-1.11.2.min.js"></script>
 
 </head>
 <body>
@@ -25,6 +26,66 @@
                     }]
                 }
         );
+
+        var showMenu = false;
+        var menu = null;
+        var main = null;
+
+        mui.plusReady(function(){
+
+            main = plus.webview.getWebviewById(plus.runtime.appid);
+
+            var menuoptions = {
+                "url": "menu.html",
+                "id": "menu",
+                "styles": {
+                    "left":0,
+                    "width":"45px",
+                    "zindex":-1
+                }
+            }
+            //"maskClick": (String 类型 )Webview窗口显示遮罩层时点击事件
+            main.addEventListener('maskClick', closeMenu);
+            menu = mui.preload(menuoptions);
+            $('.mui-icon-bars').on('tap',opMenu);
+            
+            function closeMenu(){
+            	main.setStyle({
+					mask: 'none',
+					left: '0',
+					transition: {
+						duration: 100
+					}
+				});
+				showMenu = false;
+            }
+            function opMenu() {
+                menu.show('none', 0, function() {
+                    main.setStyle({
+                        mask: 'rgba(0,0,0,0.4)',
+                        left: '70%',
+                        transition: {
+                            duration: 150
+                        }
+                    });
+
+                    showMenu = true;
+                });
+            }
+            mui.back=function () {
+                if(showMenu){
+                    closeMenu();
+                }else{
+                    plus.nativeUI.confirm('确定要退出吗？', function(e){
+                        var i = e.index;
+                        if(i == 0) {
+                            plus.runtime.quit();
+                        };
+                    }, '输入内容', ['确定','取消']);
+                }
+            }
+        }
+        )
     </script>
 </header>
 </body>
